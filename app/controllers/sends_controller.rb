@@ -38,7 +38,7 @@ class SendsController < ApplicationController
         @client = Twilio::REST::Client.new account_sid, auth_token
         @message = @client.account.messages.create({:to => "+16177713547",
           :from => "+16172846452",
-          :body => @send[:name]})
+          :body => @send[:phone]})
 ### END CODE    
 
       else
