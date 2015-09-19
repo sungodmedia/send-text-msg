@@ -30,6 +30,17 @@ class SendsController < ApplicationController
       if @send.save
         format.html { redirect_to @send, notice: 'Send was successfully created.' }
         format.json { render :show, status: :created, location: @send }
+
+ ### SEND MESSAGE CODE SUSAN
+        account_sid='ACb4180e7fb34e71988bdd9f1828b876c7'
+        auth_token='fed04811f4bbb07d7e76046959d3d95b'
+
+        @client = Twilio::REST::Client.new account_sid, auth_token
+        @message = @client.account.messages.create({:to => "+16177713547",
+          :from => "+16172846452",
+          :body => @send[:name]})
+### END CODE    
+
       else
         format.html { render :new }
         format.json { render json: @send.errors, status: :unprocessable_entity }
