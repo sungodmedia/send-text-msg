@@ -11,15 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+
+  <div class="field form-horizontal">
+    <%= f.label "Phone Number", class: 'control-label' %>
+    <%= f.text_field :phone, size: 63, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :message %><br>
-    <%= f.text_field :message %>
+  <div class="field form-horizontal">
+    <%= f.label "Text Message", class: 'control-label'%>
+    <%= f.text_field :message, size: 63, class: 'form-control'%>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <br />
+  <div class="actions form-group">
+          <%= f.submit 'Send Message' %>
+      </div>
+
+  
 <% end %>

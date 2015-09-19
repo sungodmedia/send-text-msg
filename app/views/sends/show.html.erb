@@ -1,14 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div id="main-container" class = "container">
+	<div class = "row>"
+		<div class="col-sm-6 col-sm-offset-3">
+
+			<h1>Send Text Message </h1>
+<hr>
+
+<h3 id="notice"><%= notice %></h3><br />
 
 <p>
-  <strong>Phone:</strong>
-  <%= @send.phone %>
+  <strong>Phone</strong> <br />
+  <%= number_to_phone(@send[:phone].gsub(/[^0-9]/,''), area_code: true) %>
 </p>
 
 <p>
-  <strong>Message:</strong>
+  <strong>Message</strong> <br />
   <%= @send.message %>
 </p>
 
-<%= link_to 'Edit', edit_send_path(@send) %> |
-<%= link_to 'Back', sends_path %>
+<br />
+
+<%= link_to 'Send Another Message', new_send_path, class: 'btn btn-default' %>
+
+</div>
+</div>
+</div>

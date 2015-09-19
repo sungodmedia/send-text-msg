@@ -19,6 +19,8 @@ end
 
 gem 'twilio-ruby'
 
+gem 'bootstrap-sass'
+
 ## END ADD
 
 # Use SCSS for stylesheets

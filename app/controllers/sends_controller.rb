@@ -21,6 +21,12 @@ class SendsController < ApplicationController
   def edit
   end
 
+
+
+
+
+
+
   # POST /sends
   # POST /sends.json
   def create
@@ -28,18 +34,26 @@ class SendsController < ApplicationController
 
     respond_to do |format|
       if @send.save
-        format.html { redirect_to @send, notice: 'Send was successfully created.' }
-        format.json { render :show, status: :created, location: @send }
-
+        
  ### SEND MESSAGE CODE SUSAN
-        account_sid='ACb4180e7fb34e71988bdd9f1828b876c7'
-        auth_token='fed04811f4bbb07d7e76046959d3d95b'
+        
+          account_sid='ACb4180e7fb34e71988bdd9f1828b876c7'
+          auth_token='fed04811f4bbb07d7e76046959d3d95b'
 
-        @client = Twilio::REST::Client.new account_sid, auth_token
-        @message = @client.account.messages.create({:to => @send[:phone],
-          :from => "+16172846452",
-          :body => @send[:message]})
+          begin
+            @client = Twilio::REST::Client.new account_sid, auth_token
+            @client.account.messages.create({:to => "+1"<< @send[:phone].gsub(/[^0-9]/,''),
+              :from => "+16172846452",
+              :body => @send[:message]
+            })
+          rescue Twilio::REST::RequestError => e
+            format.html { redirect_to @send, notice: e.message}
+            format.json { render :show, status: :created, location: @send }
+          end
 ### END CODE    
+
+        format.html { redirect_to @send, notice: 'The text message was successsfully sent.'}
+        format.json { render :show, status: :created, location: @send }
 
       else
         format.html { render :new }
