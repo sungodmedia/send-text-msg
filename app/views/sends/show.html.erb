@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @send.phone %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @send.message %>
+</p>
+
+<%= link_to 'Edit', edit_send_path(@send) %> |
+<%= link_to 'Back', sends_path %>
